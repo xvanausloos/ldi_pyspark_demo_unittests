@@ -14,7 +14,8 @@ Java 11 or Java 8
 
 ## Run test 
 From root folder: 
-`python -m unittest`
-or 
-`.venv/bin/pytest tests`
+
+`pytest -s -m is_spark tests/`
+
+Run only tests with annotation `is_spark`
     
