@@ -12,9 +12,11 @@ Java 11 or Java 8
 `python -m venv .venv`
 `source .venv\bin\activate`
 
+## Run Python example 
+From root folder: `python -m app.pyspark_bike`
+
 ## Run test 
 From root folder: 
-
 `pytest -s -m is_spark tests/`
 
 Run only tests with annotation `is_spark`
