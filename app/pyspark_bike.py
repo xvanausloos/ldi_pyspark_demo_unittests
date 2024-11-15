@@ -19,7 +19,7 @@ def main() -> None:
     df = b.read_data_json(json_source_file)
     df.printSchema()
     df_clean = b.clean_data(df=df)
-    df_clean.show(n=100)
+    df_clean.show(n=10)
     b.store_parquet(df_clean)
     logger.info("** End of the script **")
 
@@ -44,7 +44,8 @@ class Bike:
         df.show(n=10)
         return df
 
-    def clean_data(self, df: DataFrame) -> DataFrame:
+    @staticmethod
+    def clean_data(df: DataFrame) -> DataFrame:
         df = (df.select(
         F.col("boucle_num").alias("loop_number"),
         F.col("boucle_libelle").alias("label"),
@@ -55,8 +56,9 @@ class Bike:
         .where(F.col("probabilite_presence_anomalie").isNull()))
         return df
 
-    def store_parquet(self, df_clean: DataFrame) -> None:
-        df_clean.write.format("parquet").partitionBy("date").save("datalake/count-bike-nantes.parquet")
+    @staticmethod
+    def store_parquet(df_clean: DataFrame) -> None:
+        df_clean.write.mode("overwrite").format("parquet").partitionBy("date").save("datalake/count-bike-nantes.parquet")
 
 
 if __name__ == "__main__":
