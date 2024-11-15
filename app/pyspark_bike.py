@@ -1,7 +1,5 @@
 from pyspark.sql import SparkSession, DataFrame
-from pyspark.sql.connect.client.core import logger
 from pyspark.sql.types import IntegerType, DateType
-
 from common_ldi.ldi_logger import LdiLogger
 from pathlib import Path
 from pyspark.sql import functions as F
@@ -9,7 +7,7 @@ from pyspark.sql import functions as F
 
 def main() -> None:
     b = Bike()
-
+    logger = LdiLogger.getlogger("ldi")
     # Define the base directory relative to the current script file
     BASE_DIR = Path(__file__).resolve().parent.parent
     # Define the file path relative to BASE_DIR
