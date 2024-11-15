@@ -1,9 +1,7 @@
 import pytest
-from google.api_core.retry.retry_unary_async import retry_target
+from chispa.schema_comparer import assert_schema_equality
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DateType
-from pyspark.testing import assertSchemaEqual
-
 from app import pyspark_bike
 
 
@@ -49,7 +47,7 @@ def test_schema(spark_fixture: SparkSession, source_fixture: DataFrame):
     b = pyspark_bike.Bike
     df_result = b.clean_data(df=source_fixture)
 
-    assertSchemaEqual(
+    assert_schema_equality(
         df_result.schema,
         StructType(
             [

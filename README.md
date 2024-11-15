@@ -18,9 +18,10 @@ From root folder: `python -m app.pyspark_bike`
 
 ## Run test 
 From root folder: 
-`pytest -s -m is_spark tests/`
 
-Run only tests with annotation `is_spark`
+Run only tests with annotation `is_spark`: `pytest -s -m is_spark tests/`
+All tests: `pytest tests`
+
     
 ## Read Parquet file 
 Using 
