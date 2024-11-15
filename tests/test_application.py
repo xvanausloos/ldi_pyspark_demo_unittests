@@ -1,5 +1,4 @@
 import pytest
-from app import application
 from app.application import Application
 
 

@@ -11,8 +11,12 @@ def main() -> None:
     # Define the base directory relative to the current script file
     BASE_DIR = Path(__file__).resolve().parent.parent
     # Define the file path relative to BASE_DIR
-    csv_source_file = BASE_DIR / 'data' / '244400404_comptages-velo-nantes-metropole.csv'
-    json_source_file = BASE_DIR / 'data' / '244400404_comptages-velo-nantes-metropole.json'
+    #csv_source_file = (
+    #    BASE_DIR / "data" / "244400404_comptages-velo-nantes-metropole.csv"
+    #)
+    json_source_file = (
+        BASE_DIR / "data" / "244400404_comptages-velo-nantes-metropole.json"
+    )
     # df = b.read_data_csv(csv_source_file)
     df = b.read_data_json(json_source_file)
     df.printSchema()
@@ -44,19 +48,20 @@ class Bike:
 
     @staticmethod
     def clean_data(df: DataFrame) -> DataFrame:
-        df = (df.select(
-        F.col("boucle_num").alias("loop_number"),
-        F.col("boucle_libelle").alias("label"),
-        F.col("total").cast(IntegerType()).alias("total"),
-        F.col("dateformat").cast(DateType()).alias("date"),
-        F.col("vacances_zone_b").alias("holiday_name"),
-        )
-        .where(F.col("probabilite_presence_anomalie").isNull()))
+        df = df.select(
+            F.col("boucle_num").alias("loop_number"),
+            F.col("boucle_libelle").alias("label"),
+            F.col("total").cast(IntegerType()).alias("total"),
+            F.col("dateformat").cast(DateType()).alias("date"),
+            F.col("vacances_zone_b").alias("holiday_name"),
+        ).where(F.col("probabilite_presence_anomalie").isNull())
         return df
 
     @staticmethod
     def store_parquet(df_clean: DataFrame) -> None:
-        df_clean.write.mode("overwrite").format("parquet").partitionBy("date").save("datalake/count-bike-nantes.parquet")
+        df_clean.write.mode("overwrite").format("parquet").partitionBy("date").save(
+            "datalake/count-bike-nantes.parquet"
+        )
 
 
 if __name__ == "__main__":

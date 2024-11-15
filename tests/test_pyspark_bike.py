@@ -14,18 +14,31 @@ def spark_fixture() -> SparkSession:
 @pytest.fixture
 def source_fixture(spark_fixture) -> DataFrame:
     data = [
-            (
-                "0674", "Pont Haudaudine vers Sud", "657", "", "2", "0674 - Pont Haudaudine vers Sud", "2021-03-16",
-                "Hors Vacances"
-            ),
-            (
-                "0676", "Pont Willy Brandt vers Beaulieu", "480", "Faible", "1",
-                "0676 - Pont Willy Brandt vers Beaulieu", "2021-05-31", "Hors Vacances"
-            ),
-        ]
+        (
+            "0674",
+            "Pont Haudaudine vers Sud",
+            "657",
+            "",
+            "2",
+            "0674 - Pont Haudaudine vers Sud",
+            "2021-03-16",
+            "Hors Vacances",
+        ),
+        (
+            "0676",
+            "Pont Willy Brandt vers Beaulieu",
+            "480",
+            "Faible",
+            "1",
+            "0676 - Pont Willy Brandt vers Beaulieu",
+            "2021-05-31",
+            "Hors Vacances",
+        ),
+    ]
 
     # Define the schema
-    schema = StructType([
+    schema = StructType(
+        [
             StructField("boucle_num", StringType(), True),
             StructField("boucle_libelle", StringType(), True),
             StructField("total", StringType(), True),
@@ -34,7 +47,8 @@ def source_fixture(spark_fixture) -> DataFrame:
             StructField("Boucle de comptage", StringType(), True),
             StructField("dateformat", StringType(), True),
             StructField("vacances_zone_b", StringType(), True),
-    ])
+        ]
+    )
     return spark_fixture.createDataFrame(data, schema)
 
 
