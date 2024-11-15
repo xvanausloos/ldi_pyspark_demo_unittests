@@ -1,6 +1,3 @@
-import pytest
-import pyspark.sql.functions as F
-
 from app.super_data_transformer import SuperDataTransformer
 from tests.spark_base import spark
 

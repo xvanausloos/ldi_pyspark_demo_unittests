@@ -1,6 +1,4 @@
 from common_ldi.ldi_logger import LdiLogger
-from pyspark.sql import DataFrame
-
 
 def main() -> None:
     logger = LdiLogger.getlogger("ldi_python")
