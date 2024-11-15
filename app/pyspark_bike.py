@@ -11,9 +11,9 @@ def main() -> None:
     # Define the base directory relative to the current script file
     BASE_DIR = Path(__file__).resolve().parent.parent
     # Define the file path relative to BASE_DIR
-    #csv_source_file = (
+    # csv_source_file = (
     #    BASE_DIR / "data" / "244400404_comptages-velo-nantes-metropole.csv"
-    #)
+    # )
     json_source_file = (
         BASE_DIR / "data" / "244400404_comptages-velo-nantes-metropole.json"
     )
