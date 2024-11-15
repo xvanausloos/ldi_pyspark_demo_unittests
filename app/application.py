@@ -1,5 +1,6 @@
 from common_ldi.ldi_logger import LdiLogger
 
+
 def main() -> None:
     logger = LdiLogger.getlogger("ldi_python")
     logger.setLevel("DEBUG")
