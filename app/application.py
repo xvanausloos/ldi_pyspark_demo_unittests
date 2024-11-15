@@ -1,6 +1,7 @@
 from common_ldi.ldi_logger import LdiLogger
 from pyspark.sql import DataFrame
 
+
 def main() -> None:
     logger = LdiLogger.getlogger("ldi_python")
     logger.setLevel("DEBUG")
@@ -14,8 +15,9 @@ class Application:
     def __init__(self) -> None:
         self._logger = LdiLogger.getlogger("ldi_python")
 
-    def add_one(self, val:float):
+    def add_one(self, val: float):
         return val + 1
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

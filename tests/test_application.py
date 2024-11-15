@@ -6,10 +6,8 @@ from app.application import Application
 
 
 class TestApplication:
-
     def test_always_passes(self):
         assert True
-
 
     def test_add_one(self):
         app = Application()
